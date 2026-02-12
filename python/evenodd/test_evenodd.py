@@ -1,6 +1,6 @@
 from evenodd import is_even, is_odd
 
-# evenodd.pyのテストコード
+# evenodd.pyのテストコードです
 
 def test_is_even_true():
     assert is_even(2) is True
