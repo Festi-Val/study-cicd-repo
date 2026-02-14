@@ -10,7 +10,7 @@ jobs:
 
     steps:
       # ① 自分のリポジトリをRunnerへclone
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       # ② Workspace確認（＝あなたのrepo）
       - name: Show workspace path
