@@ -1,6 +1,6 @@
 name: Auto Merge
 
-on: pull_request
+on: workflow_dispatch
 
 jobs:
   merge:
