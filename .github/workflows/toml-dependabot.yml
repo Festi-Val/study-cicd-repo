@@ -1,0 +1,37 @@
+name: Dependabot Test
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # ① ソース取得
+      - uses: actions/checkout@v4
+
+      # ② Python 環境
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      # ③ 依存インストール
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install --upgrade setuptools wheel
+          pip install .
+
+
+      # ④ 動作確認（簡易）
+      - name: Import check
+        run: |
+          python - <<EOF
+          import requests
+          import pandas
+          import fastapi
+          import numpy
+          print("imports ok")
+          EOF
