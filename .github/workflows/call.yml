@@ -1,6 +1,8 @@
 name: Call Reusable Workflows
 
-on: pull_request
+on:
+  pull_request:
+  workflow_dispatch: # test用に手動でも動かしたい。
 
 jobs:
   call:
