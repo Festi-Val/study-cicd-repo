@@ -2,7 +2,11 @@ name: Call Reusable Workflows
 
 on:
   pull_request:
-  workflow_dispatch: # test用に手動でも動かしたい。
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write   # ★ reusable が要求するため必須
 
 jobs:
   call:
@@ -10,11 +14,13 @@ jobs:
     with:
       version: 1.0.0
       push: true
+    secrets: inherit   # ★ GITHUB_TOKEN を reusable に渡す
 
   print:
     needs: call
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Result> ${MESSAGE}"
+      - name: Print digest
+        run: echo "Result> ${MESSAGE}"
         env:
           MESSAGE: ${{ needs.call.outputs.digest }}
